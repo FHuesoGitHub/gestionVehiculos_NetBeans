@@ -7,7 +7,11 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -16,6 +20,24 @@ import javafx.fxml.Initializable;
  */
 public class VistaPrincipalController implements Initializable {
     
+    @FXML
+    private ImageView imageViewBotonCoche;
+    
+    @FXML
+    private Button botonCoche;
+    
+    @FXML
+    public void mousePressed (MouseEvent e){
+    
+        System.out.println("Coche pulsado");
+    }
+    
+    @FXML
+    public void mouseReleased (MouseEvent e){
+    
+        System.out.println("Coche soltado");
+    }
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
