@@ -19,28 +19,35 @@ import javafx.scene.input.MouseEvent;
  * @author RECAMBIOS
  */
 public class VistaPrincipalController implements Initializable {
-    
+
     @FXML
     private ImageView imageViewBotonCoche;
-    
+
     @FXML
     private Button botonCoche;
-    
+
     @FXML
-    public void mousePressed (MouseEvent e){
-    
-        System.out.println("Coche pulsado");
+    public void mousePressed(MouseEvent e) {
+
+        if (e.getSource().equals(botonCoche)) {
+
+            imageViewBotonCoche.setFitWidth(imageViewBotonCoche.getFitWidth() - 1);
+            imageViewBotonCoche.setFitHeight(imageViewBotonCoche.getFitHeight() - 1);
+        }
     }
-    
+
     @FXML
-    public void mouseReleased (MouseEvent e){
-    
-        System.out.println("Coche soltado");
+    public void mouseReleased(MouseEvent e) {
+
+        if (e.getSource().equals(botonCoche)) {
+            imageViewBotonCoche.setFitWidth(imageViewBotonCoche.getFitWidth() + 1);
+            imageViewBotonCoche.setFitHeight(imageViewBotonCoche.getFitHeight() + 1);
+        }
     }
-        
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
-    
+
+    }
+
 }
