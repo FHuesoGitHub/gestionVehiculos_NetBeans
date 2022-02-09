@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Instituto FOC
+ * Grado superior DAM
+ * Proyecto creado para la certificvación Cimientos de Java, incluído en el módulo de programación.
  */
 package controllerMoto;
 
@@ -12,16 +12,21 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
+ * Esta clase maneja los objetos de la vista moto y sus eventos.
+ *
  * @author RECAMBIOS
  */
 public class VistaMotoController implements Initializable {
 
     /**
-     * Initializes the controller class.
+     * Método que se ejecuta el primero al inicializar la vista.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+
+    }
+
 }

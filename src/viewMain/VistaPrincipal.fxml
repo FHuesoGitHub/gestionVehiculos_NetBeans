@@ -3,9 +3,8 @@
 <!-- Instituto FOC
 Grado superior DAM
 Proyecto creado para la certificvación Cimientos de Java, incluído en el módulo de programación. -->
- 
 <!-- Este diseño corresponde a la vista principal. Ha sido generado con Scene Builder -->
- 
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -18,7 +17,7 @@ Proyecto creado para la certificvación Cimientos de Java, incluído en el módu
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerMain.VistaPrincipalController">
+<GridPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VistaPrincipalController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="252.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="645.0" minWidth="10.0" prefWidth="548.0" />
@@ -27,7 +26,7 @@ Proyecto creado para la certificvación Cimientos de Java, incluído en el módu
         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <VBox alignment="CENTER" style="-fx-background-color: #30373e;">
+        <VBox alignment="CENTER" prefHeight="600.0" prefWidth="250.0" style="-fx-background-color: #30373e;">
             <children>
                 <VBox alignment="CENTER" prefHeight="93.0" prefWidth="252.0">
                     <children>
@@ -39,7 +38,7 @@ Proyecto creado para la certificvación Cimientos de Java, incluído en el módu
                     </children>
                 </VBox>
                 <VBox prefHeight="65.0" prefWidth="252.0" />
-                <VBox alignment="CENTER" spacing="10.0">
+                <VBox alignment="CENTER" prefHeight="261.0" prefWidth="250.0" spacing="10.0">
                     <children>
                         <Button fx:id="botonCoche" mnemonicParsing="false" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="80.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 10;" textFill="WHITE">
                             <graphic>
@@ -81,6 +80,6 @@ Proyecto creado para la certificvación Cimientos de Java, incluído en el módu
                 </HBox>
             </children>
         </VBox>
-        <StackPane GridPane.columnIndex="1" />
+        <StackPane prefHeight="600.0" prefWidth="550.0" GridPane.columnIndex="1" />
     </children>
 </GridPane>
