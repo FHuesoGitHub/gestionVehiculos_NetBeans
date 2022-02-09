@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Instituto FOC
+Grado superior DAM
+Proyecto creado para la certificvación Cimientos de Java, incluído en el módulo de programación. -->
+ 
+<!-- Este diseño corresponde a la vista principal. Ha sido generado con Scene Builder -->
+ 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerMain.VistaPrincipalController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="252.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="645.0" minWidth="10.0" prefWidth="548.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <VBox alignment="CENTER" style="-fx-background-color: #30373e;">
+            <children>
+                <VBox alignment="CENTER" prefHeight="93.0" prefWidth="252.0">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="94.0" prefWidth="251.0" text="Gestión de vehículos" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox prefHeight="65.0" prefWidth="252.0" />
+                <VBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Button fx:id="botonCoche" mnemonicParsing="false" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="80.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 10;" textFill="WHITE">
+                            <graphic>
+                                <ImageView fx:id="imageViewBotonCoche" fitHeight="65.0" fitWidth="87.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/coche-removebg.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="botonMoto" mnemonicParsing="false" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="80.0" prefWidth="100.0" style="-fx-border-color: white; -fx-background-color: transparent; -fx-border-radius: 10;" textFill="WHITE">
+                            <graphic>
+                                <ImageView fx:id="imageViewBotonMoto" fitHeight="65.0" fitWidth="87.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/moto-removebg.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="botonBici" maxHeight="-Infinity" mnemonicParsing="false" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="80.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 10;" textFill="WHITE">
+                            <graphic>
+                                <ImageView fx:id="imageViewBotonBici" fitHeight="65.0" fitWidth="87.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/bici-removebg.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </VBox>
+                <HBox alignment="CENTER" prefHeight="103.0" prefWidth="252.0">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="252.0" text="by FHueso" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <StackPane GridPane.columnIndex="1" />
+    </children>
+</GridPane>
