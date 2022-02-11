@@ -36,7 +36,7 @@ public class VistaPrincipalController implements Initializable {
     @FXML
     private StackPane stackPaneVistaPrincipal;
     
-    private StackPane StackPanePrueba;
+    private StackPane StackPaneCoche, StackPaneMoto;
 
     /**
      * Evento de presionar un botón.
@@ -107,10 +107,14 @@ public class VistaPrincipalController implements Initializable {
         try {
             
             //Cargador para la vista moto.
-            StackPanePrueba = cargarVista("/viewMoto/VistaMoto.fxml");
-            //Añado vista moto al stack pane de la vista principal.
-            stackPaneVistaPrincipal.getChildren().addAll(StackPanePrueba);
-            StackPanePrueba.setVisible(true);
+            StackPaneCoche = cargarVista("/viewCoche/VistaCoche.fxml");
+            //Cargador para la vista moto.
+            StackPaneMoto = cargarVista("/viewMoto/VistaMoto.fxml");
+            //Añado vistas al stack pane de la vista principal.
+            stackPaneVistaPrincipal.getChildren().addAll(StackPaneCoche, StackPaneMoto);
+            //Visualizo u oculto cada vista según sea conveniente.
+            StackPaneCoche.setVisible(true);
+            StackPaneMoto.setVisible(false);
         } catch (IOException ex) {
 
             Logger.getLogger(VistaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
