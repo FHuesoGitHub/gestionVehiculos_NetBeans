@@ -2,7 +2,7 @@
 
 <!-- Instituto FOC
 Grado superior DAM
-Proyecto creado para la certificvación Cimientos de Java, incluído en el módulo de programación. -->
+Proyecto creado para la certificación Cimientos de Java, incluído en el módulo de programación. -->
 <!-- Este diseño corresponde a la vista principal. Ha sido generado con Scene Builder -->
 
 <?import javafx.scene.control.Button?>
@@ -17,7 +17,7 @@ Proyecto creado para la certificvación Cimientos de Java, incluído en el módu
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VistaPrincipalController">
+<GridPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerMain.VistaPrincipalController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="252.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="645.0" minWidth="10.0" prefWidth="548.0" />
@@ -80,6 +80,6 @@ Proyecto creado para la certificvación Cimientos de Java, incluído en el módu
                 </HBox>
             </children>
         </VBox>
-        <StackPane prefHeight="600.0" prefWidth="550.0" GridPane.columnIndex="1" />
+        <StackPane fx:id="stackPaneVistaPrincipal" GridPane.columnIndex="1" />
     </children>
 </GridPane>

@@ -2,15 +2,38 @@
 
 <!-- Instituto FOC
 Grado superior DAM
-Proyecto creado para la certificvación Cimientos de Java, incluído en el módulo de programación. -->
+Proyecto creado para la certificación Cimientos de Java, incluído en el módulo de programación. -->
 <!-- Este diseño corresponde a la vista moto. Ha sido generado con Scene Builder -->
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerMoto.VistaMotoController">
-    
-</AnchorPane>
+
+<StackPane prefHeight="600.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerMoto.VistaMotoController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="548.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/fondo_coche.jpg" />
+         </image>
+      </ImageView>
+      <HBox>
+         <children>
+            <VBox prefHeight="200.0" prefWidth="389.0">
+               <children>
+                  <VBox prefHeight="513.0" prefWidth="246.0" />
+                  <HBox prefHeight="169.0" prefWidth="246.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="600.0" prefWidth="447.0">
+               <children>
+                  <VBox prefHeight="513.0" prefWidth="246.0" />
+                  <HBox prefHeight="169.0" prefWidth="246.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</StackPane>

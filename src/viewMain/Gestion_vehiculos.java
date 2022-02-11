@@ -1,7 +1,7 @@
 /*
  * Instituto FOC
  * Grado superior DAM
- * Proyecto creado para la certificvación Cimientos de Java, incluído en el módulo de programación.
+ * Proyecto creado para la certificación Cimientos de Java, incluído en el módulo de programación.
  */
 package viewMain;
 
@@ -29,7 +29,7 @@ public class Gestion_vehiculos extends Application {
     public void start(Stage stage) throws IOException {
 
         //Cargador para la vista principal.
-        Parent root = FXMLLoader.load(getClass().getResource("VistaPrincipal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/viewMain/VistaPrincipal.fxml"));        
         Scene scene = new Scene(root);
 
         stage.setTitle("Gestion de vehículos");

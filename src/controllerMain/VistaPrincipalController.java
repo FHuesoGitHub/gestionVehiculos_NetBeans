@@ -1,17 +1,22 @@
 /*
  * Instituto FOC
  * Grado superior DAM
- * Proyecto creado para la certificvación Cimientos de Java, incluído en el módulo de programación.
+ * Proyecto creado para la certificación Cimientos de Java, incluído en el módulo de programación.
  */
 package controllerMain;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 
 /**
  * FXML Controller class
@@ -27,6 +32,11 @@ public class VistaPrincipalController implements Initializable {
 
     @FXML
     private Button botonCoche, botonMoto, botonBici;
+
+    @FXML
+    private StackPane stackPaneVistaPrincipal;
+    
+    private StackPane StackPanePrueba;
 
     /**
      * Evento de presionar un botón.
@@ -94,6 +104,21 @@ public class VistaPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        try {
+            
+            //Cargador para la vista moto.
+            StackPanePrueba = cargarVista("/viewMoto/VistaMoto.fxml");
+            //Añado vista moto al stack pane de la vista principal.
+            stackPaneVistaPrincipal.getChildren().addAll(StackPanePrueba);
+            StackPanePrueba.setVisible(true);
+        } catch (IOException ex) {
+
+            Logger.getLogger(VistaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+    private StackPane cargarVista(String url) throws IOException {
+        
+        return (StackPane) FXMLLoader.load(getClass().getResource(url));
+    }
 }
