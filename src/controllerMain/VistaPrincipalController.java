@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,7 +36,7 @@ public class VistaPrincipalController implements Initializable {
 
     @FXML
     private StackPane stackPaneVistaPrincipal;
-    
+
     private StackPane StackPaneCoche, StackPaneMoto;
 
     /**
@@ -96,6 +97,41 @@ public class VistaPrincipalController implements Initializable {
     }
 
     /**
+     * Evento de click de ratón
+     *
+     * @param e Información del objeto quje desencadenó el evento.
+     */
+    @FXML
+    public void action(ActionEvent e) {
+
+        /*
+        Dependiendo del botón pulsado, se muestra la vista correspondiente
+        en el stack pane de la vista principal. Estas vistas fueron cargadas previamente,
+        en el método initialize.
+         */
+        if (e.getSource().equals(botonCoche)) {
+
+            StackPaneMoto.setVisible(false);
+            //StackPaneBici.setVisible(false);
+            StackPaneCoche.setVisible(true);
+        }
+
+        if (e.getSource().equals(botonMoto)) {
+
+            StackPaneMoto.setVisible(true);
+            //StackPaneBici.setVisible(false);
+            StackPaneCoche.setVisible(false);
+        }
+
+        if (e.getSource().equals(botonBici)) {
+
+            StackPaneMoto.setVisible(false);
+            //StackPaneBici.setVisible(true);
+            StackPaneCoche.setVisible(false);
+        }
+    }
+
+    /**
      * Método que se ejecuta el primero al inicializar la vista.
      *
      * @param url
@@ -105,7 +141,7 @@ public class VistaPrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         try {
-            
+
             //Cargador para la vista moto.
             StackPaneCoche = cargarVista("/viewCoche/VistaCoche.fxml");
             //Cargador para la vista moto.
@@ -122,7 +158,7 @@ public class VistaPrincipalController implements Initializable {
     }
 
     private StackPane cargarVista(String url) throws IOException {
-        
+
         return (StackPane) FXMLLoader.load(getClass().getResource(url));
     }
 }

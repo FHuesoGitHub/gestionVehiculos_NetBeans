@@ -40,7 +40,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                 <VBox prefHeight="65.0" prefWidth="252.0" />
                 <VBox alignment="CENTER" prefHeight="261.0" prefWidth="250.0" spacing="10.0">
                     <children>
-                        <Button fx:id="botonCoche" mnemonicParsing="false" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="80.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 10;" textFill="WHITE">
+                        <Button fx:id="botonCoche" mnemonicParsing="false" onAction="#action" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="80.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 10;" textFill="WHITE">
                             <graphic>
                                 <ImageView fx:id="imageViewBotonCoche" fitHeight="65.0" fitWidth="87.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -49,7 +49,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="botonMoto" mnemonicParsing="false" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="80.0" prefWidth="100.0" style="-fx-border-color: white; -fx-background-color: transparent; -fx-border-radius: 10;" textFill="WHITE">
+                        <Button fx:id="botonMoto" mnemonicParsing="false" onAction="#action" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="80.0" prefWidth="100.0" style="-fx-border-color: white; -fx-background-color: transparent; -fx-border-radius: 10;" textFill="WHITE">
                             <graphic>
                                 <ImageView fx:id="imageViewBotonMoto" fitHeight="65.0" fitWidth="87.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -58,7 +58,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="botonBici" maxHeight="-Infinity" mnemonicParsing="false" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="80.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 10;" textFill="WHITE">
+                        <Button fx:id="botonBici" maxHeight="-Infinity" mnemonicParsing="false" onAction="#action" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="80.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 10;" textFill="WHITE">
                             <graphic>
                                 <ImageView fx:id="imageViewBotonBici" fitHeight="65.0" fitWidth="87.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                                     <image>
