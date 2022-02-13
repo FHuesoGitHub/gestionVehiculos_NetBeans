@@ -12,7 +12,10 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author RECAMBIOS
+ * Esta clase maneja los objetos de la vista moto y sus eventos.
+ *
+ * @author Francisco Hueso
+ * @version 02/2022
  */
 public class VistaMotoController implements Initializable {
 
@@ -22,6 +25,6 @@ public class VistaMotoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }

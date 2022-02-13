@@ -3,24 +3,20 @@
 <!-- Instituto FOC
 Grado superior DAM
 Proyecto creado para la certificación Cimientos de Java, incluído en el módulo de programación. -->
-<!-- Este diseño corresponde a la vista coche. Ha sido generado con Scene Builder -->
+<!-- Este diseño corresponde a la vista bici. Ha sido generado con Scene Builder -->
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="548.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerCoche.VistaCocheController">
+<StackPane prefHeight="600.0" prefWidth="548.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerBici.VistaBiciController">
     <children>
         <ImageView fitHeight="600.0" fitWidth="548.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../images/fondo_coche.jpg" />
+                <Image url="@../images/fondo_bici.jpg" />
             </image>
-         <StackPane.margin>
-            <Insets />
-         </StackPane.margin>
         </ImageView>
         <HBox>
             <children>

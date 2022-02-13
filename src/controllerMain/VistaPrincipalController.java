@@ -24,7 +24,8 @@ import javafx.scene.layout.StackPane;
  *
  * Esta clase maneja los objetos de la vista principal y sus eventos.
  *
- * @author RECAMBIOS
+ * @author Francisco Hueso
+ * @version 02/2022
  */
 public class VistaPrincipalController implements Initializable {
 
@@ -37,7 +38,7 @@ public class VistaPrincipalController implements Initializable {
     @FXML
     private StackPane stackPaneVistaPrincipal;
 
-    private StackPane StackPaneCoche, StackPaneMoto;
+    private StackPane StackPaneCoche, StackPaneMoto, StackPaneBici;
 
     /**
      * Evento de presionar un botón.
@@ -112,21 +113,21 @@ public class VistaPrincipalController implements Initializable {
         if (e.getSource().equals(botonCoche)) {
 
             StackPaneMoto.setVisible(false);
-            //StackPaneBici.setVisible(false);
+            StackPaneBici.setVisible(false);
             StackPaneCoche.setVisible(true);
         }
 
         if (e.getSource().equals(botonMoto)) {
 
             StackPaneMoto.setVisible(true);
-            //StackPaneBici.setVisible(false);
+            StackPaneBici.setVisible(false);
             StackPaneCoche.setVisible(false);
         }
 
         if (e.getSource().equals(botonBici)) {
 
             StackPaneMoto.setVisible(false);
-            //StackPaneBici.setVisible(true);
+            StackPaneBici.setVisible(true);
             StackPaneCoche.setVisible(false);
         }
     }
@@ -142,21 +143,34 @@ public class VistaPrincipalController implements Initializable {
 
         try {
 
-            //Cargador para la vista moto.
+            //Cargador para la vista coche.
             StackPaneCoche = cargarVista("/viewCoche/VistaCoche.fxml");
+            StackPaneCoche.setVisible(true);
+
             //Cargador para la vista moto.
             StackPaneMoto = cargarVista("/viewMoto/VistaMoto.fxml");
-            //Añado vistas al stack pane de la vista principal.
-            stackPaneVistaPrincipal.getChildren().addAll(StackPaneCoche, StackPaneMoto);
-            //Visualizo u oculto cada vista según sea conveniente.
-            StackPaneCoche.setVisible(true);
             StackPaneMoto.setVisible(false);
+
+            //Cargador para la vista bici.
+            StackPaneBici = cargarVista("/viewBici/VistaBici.fxml");
+            StackPaneBici.setVisible(false);
+
+            //Añado vistas al stack pane de la vista principal.
+            stackPaneVistaPrincipal.getChildren().addAll(StackPaneCoche, StackPaneMoto, StackPaneBici);
+
         } catch (IOException ex) {
 
             Logger.getLogger(VistaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    /**
+     * Genera el cargador para la vista cuya ruta recibe por parámetros.
+     *
+     * @param url Ruta con la vista a cargar.
+     * @return Retorna un StackPane con la vista cargada.
+     * @throws IOException
+     */
     private StackPane cargarVista(String url) throws IOException {
 
         return (StackPane) FXMLLoader.load(getClass().getResource(url));
