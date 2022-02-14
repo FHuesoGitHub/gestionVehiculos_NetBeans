@@ -30,7 +30,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                <children>
                   <VBox prefHeight="623.0" prefWidth="259.0">
                      <children>
-                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Label">
+                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Matrícula">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -38,12 +38,12 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false">
+                        <TextField fx:id="textMatricula" editable="false">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Label">
+                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Marca">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -51,12 +51,12 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false">
+                        <TextField fx:id="textMarca" editable="false">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Label">
+                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Modelo">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -64,12 +64,12 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false">
+                        <TextField fx:id="textModelo" editable="false">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Label">
+                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Color">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -77,12 +77,12 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false">
+                        <TextField fx:id="textColor" editable="false">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Label">
+                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Cilindrada CC">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -90,12 +90,12 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false">
+                        <TextField fx:id="textCilindrada" editable="false">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Label">
+                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Potencia CV">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -103,12 +103,12 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false">
+                        <TextField fx:id="textPotencia" editable="false">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Label">
+                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Año de fabricación">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -116,12 +116,12 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false">
+                        <TextField fx:id="textAnioFabricacion" editable="false">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Label">
+                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Fecha vto. seguro">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -129,12 +129,12 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false">
+                        <TextField fx:id="textF_VtoSeguro" editable="false">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Label">
+                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Fecha prox. ITV">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -142,12 +142,12 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false">
+                        <TextField fx:id="textF_ProxITV" editable="false">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Label">
+                        <Label style="-fx-background-color: white; -fx-font-weight: bold;" text="Tipo carnet">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -155,7 +155,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField editable="false">
+                        <TextField fx:id="textTipoCarnet" editable="false">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
@@ -163,17 +163,17 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                      </children></VBox>
                   <HBox alignment="CENTER" prefHeight="169.0" prefWidth="246.0" spacing="30.0">
                      <children>
-                        <Button fx:id="botonAntMoto" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="&lt;&lt;">
+                        <Button fx:id="botonAntMoto" mnemonicParsing="false" onAction="#action" prefHeight="25.0" prefWidth="50.0" text="&lt;&lt;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button fx:id="botonBuscarMoto" mnemonicParsing="false" text="Buscar">
+                        <Button fx:id="botonBuscarMoto" mnemonicParsing="false" onAction="#action" text="Buscar">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="botonSigMoto" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-font-weight: bold;" text="&gt;&gt;" />
+                        <Button fx:id="botonSigMoto" mnemonicParsing="false" onAction="#action" prefHeight="25.0" prefWidth="50.0" style="-fx-font-weight: bold;" text="&gt;&gt;" />
                      </children></HBox>
                </children>
             </VBox>
@@ -189,14 +189,14 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextArea editable="false" opacity="0.9" prefHeight="552.0" prefWidth="312.0">
+                        <TextArea fx:id="areaMoto" editable="false" opacity="0.9" prefHeight="552.0" prefWidth="312.0">
                            <VBox.margin>
-                              <Insets right="25.0" />
+                              <Insets right="10.0" />
                            </VBox.margin></TextArea>
                      </children></VBox>
                   <HBox alignment="CENTER" prefHeight="65.0" prefWidth="317.0" spacing="30.0">
                      <children>
-                        <Button fx:id="botonMenosMoto" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="-">
+                        <Button fx:id="botonBajaMoto" mnemonicParsing="false" onAction="#action" prefHeight="25.0" prefWidth="50.0" text="-">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -204,8 +204,8 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="botonMantenimientoMoto" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Mantenimiento" />
-                        <Button fx:id="botonMasMoto" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="+">
+                        <Button fx:id="botonMantMoto" mnemonicParsing="false" onAction="#action" style="-fx-font-weight: bold;" text="Mantenimiento" />
+                        <Button fx:id="botonAltaMoto" mnemonicParsing="false" onAction="#action" prefHeight="25.0" prefWidth="50.0" text="+">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>

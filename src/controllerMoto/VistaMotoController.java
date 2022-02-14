@@ -7,7 +7,10 @@ package controllerMoto;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -19,6 +22,17 @@ import javafx.fxml.Initializable;
  */
 public class VistaMotoController implements Initializable {
 
+    @FXML
+    private Button botonAntMoto, botonBuscarMoto, botonSigMoto, botonBajaMoto, botonMantMoto, botonAltaMoto;
+    
+    public void action(ActionEvent e){
+        
+        /*
+        if(e.getSource().equals(xxx)){
+            
+        }*/
+    }
+    
     /**
      * Initializes the controller class.
      */
