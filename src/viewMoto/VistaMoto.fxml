@@ -197,7 +197,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="botonMantMoto" mnemonicParsing="false" onAction="#action" style="-fx-font-weight: bold;" text="Mantenimiento" />
+                        <Button fx:id="botonModMoto" mnemonicParsing="false" onAction="#action" style="-fx-font-weight: bold;" text="Modificar" />
                         <Button fx:id="botonAltaMoto" mnemonicParsing="false" onAction="#action" prefHeight="25.0" prefWidth="50.0" text="+">
                            <font>
                               <Font name="System Bold" size="14.0" />

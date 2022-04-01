@@ -23,7 +23,7 @@ import javafx.scene.control.Button;
 public class VistaBiciController implements Initializable {
 
     @FXML
-    private Button botonAntBici, botonBuscarBici, botonSigBici, botonBajaBici, botonRutasBici, botonAltaBici;
+    private Button botonAntBici, botonBuscarBici, botonSigBici, botonBajaBici, botonModBici, botonAltaBici;
 
     public void action(ActionEvent e) {
 

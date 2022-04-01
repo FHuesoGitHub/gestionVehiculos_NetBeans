@@ -23,7 +23,7 @@ import javafx.scene.control.Button;
 public class VistaCocheController implements Initializable {
 
     @FXML
-    private Button botonAntCoche, botonBuscarCoche, botonSigCoche, botonBajaCoche, botonMantCoche, botonAltaCoche;
+    private Button botonAntCoche, botonBuscarCoche, botonSigCoche, botonBajaCoche, botonModCoche, botonAltaCoche;
 
     public void action(ActionEvent e) {
 
