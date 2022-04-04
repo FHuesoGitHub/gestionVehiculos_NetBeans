@@ -10,14 +10,14 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 /**
- * Modela los vehículos. Generalización.
+ * Modela los objetos Vehiculo. Generalización.
  *
  * @author Francisco Hueso
  * @version 02/2022
  */
 public class Vehiculo {
 
-    protected String marca, modelo, color, annio, id;
+    protected String marca, modelo, color, annio, id, txtArea;
 
     protected ArrayList<Vehiculo> vehiculoList = new ArrayList<Vehiculo>();
 
@@ -31,8 +31,50 @@ public class Vehiculo {
         this.annio = annio;
         this.id = id;
     }
-    
-    Métodos anterior y siguiente. Devolverán la posición anterior y siguiente del arrayList, al objeto recibido por parámetros.
+
+    /**
+     * Busca el objeto anterior en la colección.
+     *
+     * @param v Objeto Vehiculo del cual se quiere la posición anterior en la colección
+     * @return Objeto vehículo anterior en la colección o el mismo vehículo que se ha recibido por
+     * parámetros en el caso de que no haya ocurrencias o que el Vehículo recibido sea el primero de
+     * la colección.
+     */
+    public Vehiculo anterior(Vehiculo v) {
+
+        int indice = vehiculoList.indexOf(v);
+        // Si indice es -1 el objeto no está en la colección
+
+        if (indice > 0) {
+
+            return vehiculoList.get(indice - 1);
+        } else {
+
+            return v;
+        }
+    }
+
+    /**
+     * Busca el objeto siguiente en la colección.
+     *
+     * @param v Objeto Vehiculo del cual se quiere la posición siguiente en la colección
+     * @return Objeto vehículo siguiente en la colección o el mismo vehículo que se ha recibido por
+     * parámetros en el caso de que no haya ocurrencias o que el Vehículo recibido sea el último de
+     * la colección.
+     */
+    public Vehiculo siguiente(Vehiculo v) {
+
+        int indice = vehiculoList.indexOf(v);
+        // Si indice es -1 el objeto no está en la colección
+
+        if (indice < (vehiculoList.size() - 1) && indice != -1)  {
+
+            return vehiculoList.get(indice + 1);
+        } else {
+
+            return v;
+        }
+    }
 
     /**
      * Busca el objeto Vehiculo en la colección y lo sustituye

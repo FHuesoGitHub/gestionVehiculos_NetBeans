@@ -27,7 +27,7 @@ public class Gestion_vehiculos extends Application {
 
         stage.setTitle("Gestion de vehículos");
         stage.setScene(scene);
-        stage.show();
+        stage.show();        
     }
 
     public static void main(String[] args) {
