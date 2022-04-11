@@ -5,10 +5,6 @@
  */
 package model;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import javax.swing.JOptionPane;
-
 /**
  * Modela los objetos Vehiculo. Generalización.
  *
@@ -19,164 +15,17 @@ public class Vehiculo {
 
     protected String marca, modelo, color, annio, id, txtArea;
 
-    protected ArrayList<Vehiculo> vehiculoList = new ArrayList<Vehiculo>();
-
     public Vehiculo() {
-    }
+    }   
 
-    public Vehiculo(String marca, String modelo, String color, String annio, String id) {
+    public Vehiculo(String marca, String modelo, String color, String annio, String id, String txtArea) {
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
         this.annio = annio;
         this.id = id;
-    }
-
-    /**
-     * Busca el objeto anterior en la colección.
-     *
-     * @param v Objeto Vehiculo del cual se quiere la posición anterior en la colección
-     * @return Objeto vehículo anterior en la colección o el mismo vehículo que se ha recibido por
-     * parámetros en el caso de que no haya ocurrencias o que el Vehículo recibido sea el primero de
-     * la colección.
-     */
-    public Vehiculo anterior(Vehiculo v) {
-
-        int indice = vehiculoList.indexOf(v);
-        // Si indice es -1 el objeto no está en la colección
-
-        if (indice > 0) {
-
-            return vehiculoList.get(indice - 1);
-        } else {
-
-            return v;
-        }
-    }
-
-    /**
-     * Busca el objeto siguiente en la colección.
-     *
-     * @param v Objeto Vehiculo del cual se quiere la posición siguiente en la colección
-     * @return Objeto vehículo siguiente en la colección o el mismo vehículo que se ha recibido por
-     * parámetros en el caso de que no haya ocurrencias o que el Vehículo recibido sea el último de
-     * la colección.
-     */
-    public Vehiculo siguiente(Vehiculo v) {
-
-        int indice = vehiculoList.indexOf(v);
-        // Si indice es -1 el objeto no está en la colección
-
-        if (indice < (vehiculoList.size() - 1) && indice != -1)  {
-
-            return vehiculoList.get(indice + 1);
-        } else {
-
-            return v;
-        }
-    }
-
-    /**
-     * Busca el objeto Vehiculo en la colección y lo sustituye
-     *
-     * @param v Objeto Vehiculo a sustituir
-     * @return true si se ha insertado o false en caso contrario
-     */
-    public boolean modificar(Vehiculo v) {
-
-        boolean exito = false;
-
-        //Recupero el campo a buscar
-        String codigo = v.getId();
-
-        //Creo un iterador para recorrer la colección de datos
-        Iterator it = vehiculoList.iterator();
-
-        //Recorro la colección para encontrar ocurrencias
-        while (it.hasNext()) { //Mientras haya elementos en la colección
-
-            //Recupero el siguiente elemento de la colección
-            Vehiculo elemento = (Vehiculo) it.next();
-
-            if (elemento.getId().equals(codigo)) { //Si hay ocurrencia:
-
-                //Recupero el índice del objeto encontrado
-                int indice = vehiculoList.indexOf(elemento);
-
-                //Sustituyo el índice encontrado por el recibido por parámetros
-                vehiculoList.set(indice, v);
-
-                exito = true;
-
-                break;
-            }
-        }
-
-        return exito;
-    }
-
-    /**
-     * Inserta un objeto Producto en el la colección si este no existe.
-     *
-     * @param v Objeto Producto a insertar en la colección
-     * @return true si se ha insertado o false en caso contrario
-     */
-    public boolean insertar(Vehiculo v) {
-
-        if (buscar(v) == null) { //El Vehiculo no se encuentra en la colección
-
-            vehiculoList.add(v);
-            JOptionPane.showMessageDialog(null, "Vehiculo insertado.", "Información", JOptionPane.INFORMATION_MESSAGE);
-            return true;
-        } else { //El Vehiculo ya se encuentra en la colección
-
-            JOptionPane.showMessageDialog(null, "Vehiculo ya existente.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-    }
-
-    /**
-     * Elimina un objeto Vehiculo de la colección
-     *
-     * @param v Objeto Vehiculo a borrar de la colección
-     */
-    public void borrar(Vehiculo v) {
-
-        vehiculoList.remove(v);
-    }
-
-    /**
-     * Busca un objeto Vehiculo en la colección
-     *
-     * @param v Objeto Vehiculo a buscar en la colección
-     *
-     * @return Objeto Vehiculo encontrado o null si no hay ocurrencias.
-     */
-    public Vehiculo buscar(Vehiculo v) {
-
-        Vehiculo vehiculo = null;
-
-        //Recupero el campo a buscar
-        String id = v.getId();
-
-        //Creo un iterador para recorrer la colección de datos
-        Iterator it = vehiculoList.iterator();
-
-        //Recorro la colección para encontrar ocurrencias
-        while (it.hasNext()) { //Mientras haya elementos en la colección
-
-            //Recupero el siguiente elemento de la colección
-            Vehiculo elemento = (Vehiculo) it.next();
-
-            if (elemento.getId().equals(id)) { //Si hay ocurrencia, guardo el objeto encontrado
-
-                vehiculo = elemento;
-                break;
-            }
-        }
-
-        return vehiculo;
-    }
+        this.txtArea = txtArea;
+    }  
 
     public String getMarca() {
         return marca;
@@ -216,13 +65,13 @@ public class Vehiculo {
 
     public void setId(String id) {
         this.id = id;
+    }    
+
+    public String getTxtArea() {
+        return txtArea;
     }
 
-    public ArrayList<Vehiculo> getVehiculoList() {
-        return vehiculoList;
-    }
-
-    public void setVehiculoList(ArrayList<Vehiculo> vehiculoList) {
-        this.vehiculoList = vehiculoList;
-    }
+    public void setTxtArea(String txtArea) {
+        this.txtArea = txtArea;
+    }    
 }

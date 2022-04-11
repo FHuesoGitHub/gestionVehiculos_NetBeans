@@ -5,8 +5,6 @@
  */
 package model;
 
-import java.util.Date;
-
 /**
  * Modela los objetos Coche. Especificación de Vehículo.
  *
@@ -15,21 +13,20 @@ import java.util.Date;
  */
 public class Coche extends Vehiculo {
 
-    private String cc, cv;
-    private Date fechaSeguro, fechaItv;
+    private String cc, cv, fechaSeguro, fechaItv;
     private cmb combustible;
 
-    public Coche() {
+    public Coche() {        
     }
 
-    public Coche(String cc, String cv, Date fechaSeguro, Date fechaItv, cmb combustible, String marca, String modelo, String color, String annio, String id) {
-        super(marca, modelo, color, annio, id);
+    public Coche(String cc, String cv, String fechaSeguro, String fechaItv, cmb combustible, String marca, String modelo, String color, String annio, String id, String txtArea) {
+        super(marca, modelo, color, annio, id, txtArea);
         this.cc = cc;
         this.cv = cv;
         this.fechaSeguro = fechaSeguro;
         this.fechaItv = fechaItv;
         this.combustible = combustible;
-    }
+    }   
 
     public String getCc() {
         return cc;
@@ -47,19 +44,19 @@ public class Coche extends Vehiculo {
         this.cv = cv;
     }
 
-    public Date getFechaSeguro() {
+    public String getFechaSeguro() {
         return fechaSeguro;
     }
 
-    public void setFechaSeguro(Date fechaSeguro) {
+    public void setFechaSeguro(String fechaSeguro) {
         this.fechaSeguro = fechaSeguro;
     }
 
-    public Date getFechaItv() {
+    public String getFechaItv() {
         return fechaItv;
     }
 
-    public void setFechaItv(Date fechaItv) {
+    public void setFechaItv(String fechaItv) {
         this.fechaItv = fechaItv;
     }
 

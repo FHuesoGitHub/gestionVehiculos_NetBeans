@@ -43,7 +43,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textMatricula" editable="false">
+                        <TextField fx:id="textMatricula">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
@@ -56,7 +56,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textMarca" editable="false">
+                        <TextField fx:id="textMarca">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
@@ -69,7 +69,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textModelo" editable="false">
+                        <TextField fx:id="textModelo">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
@@ -82,7 +82,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textColor" editable="false">
+                        <TextField fx:id="textColor">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
@@ -95,7 +95,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textCilindrada" editable="false">
+                        <TextField fx:id="textCilindrada">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
@@ -108,7 +108,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textPotencia" editable="false">
+                        <TextField fx:id="textPotencia">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
@@ -121,7 +121,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textAnioFabricacion" editable="false">
+                        <TextField fx:id="textAnioFabricacion">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
@@ -134,7 +134,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textF_VtoSeguro" editable="false">
+                        <TextField fx:id="textF_VtoSeguro">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
@@ -147,7 +147,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets left="10.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="textF_ProxITV" editable="false">
+                        <TextField fx:id="textF_ProxITV">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
@@ -206,7 +206,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextArea fx:id="areaCoche" editable="false" opacity="0.9" prefHeight="499.0" prefWidth="293.0">
+                        <TextArea fx:id="areaCoche" opacity="0.9" prefHeight="499.0" prefWidth="293.0">
                            <VBox.margin>
                               <Insets right="10.0" />
                            </VBox.margin>
