@@ -17,7 +17,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 import model.Coche;
-import model.cmb;
+import enumerations.cmb;
+import model.Vehiculo;
 
 /**
  * FXML Controller class
@@ -30,7 +31,7 @@ import model.cmb;
 public class VistaCocheController implements Initializable {
 
     @FXML
-    private Button botonAntCoche, botonBuscarCoche, botonSigCoche, botonBajaCoche, botonModCoche, botonAltaCoche;
+    private Button botonAntCoche, botonBuscarCoche, botonSigCoche, botonBajaCoche, botonModCoche, botonAltaCoche, botonLimpiarCoche;
     @FXML
     private TextField textMatricula, textMarca, textModelo, textColor, textCilindrada, textPotencia, textAnioFabricacion, textF_VtoSeguro, textF_ProxITV;
     @FXML
@@ -38,7 +39,7 @@ public class VistaCocheController implements Initializable {
     @FXML
     private TextArea areaCoche;
 
-    private String cc, cv, fechaSeguro, fechaItv, marca, modelo, color, annio, id, area;
+    private String cc = "", cv = "", fechaSeguro = "", fechaItv = "", marca = "", modelo = "", color = "", annio = "", id = "", area = "";
     cmb combustible;
 
     public void action(ActionEvent e) {
@@ -47,6 +48,45 @@ public class VistaCocheController implements Initializable {
 
             altaCoche();
         }
+
+        if (e.getSource().equals(botonBajaCoche)) {
+
+            areaCoche.setText(new DBHandler().VehiculotoString());
+        }
+
+        if (e.getSource().equals(botonLimpiarCoche)) {
+            limpiarCampos();
+        }
+
+        if (e.getSource().equals(botonBuscarCoche)) {
+            buscarCoche();
+        }
+    }
+
+    /**
+     * Conecta con DBHandler para buscar un vehículo
+     */
+    public void buscarCoche() {
+
+        //Recupero el ID del producto a buscar
+        String matricula = textMatricula.getText();
+
+        if (matricula.trim().isEmpty()) { //El campo no puede estar vacío
+
+            JOptionPane.showMessageDialog(null, "Necesito una matrícula para buscar.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            Vehiculo coche = new DBHandler().buscar(matricula);
+
+            if (coche == null || !(coche instanceof Coche)) { //Búsqueda sin éxito
+
+                String mensaje = "No se ha encontrado la matrícula: " + matricula;
+                JOptionPane.showMessageDialog(null, mensaje, "Buscar", JOptionPane.INFORMATION_MESSAGE);
+                limpiarCampos();
+            } else { //La búsqueda ha tenido éxito
+                mostrarCoche((Coche)coche);
+            }
+        }
     }
 
     /**
@@ -54,30 +94,81 @@ public class VistaCocheController implements Initializable {
      */
     public void altaCoche() {
 
-        /*
-        ///////////////////////////////////////////////////////////////
-        FALTA COMPROBAR SI LA MaTRÍCULA YA EXISTE
-        //////////////////////////////////////////////////////////////
-        */
-        
         if (validarDatos()) {
 
             Coche coche = new Coche(cc, cv, fechaSeguro, fechaItv, combustible, marca, modelo, color, annio, id, area);
 
-            if (new DBHandler().alta(coche)) {
-                JOptionPane.showMessageDialog(null, "Vehículo dado de alta", "Alta", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "El vehículo no pudo darse de alta", "Error", JOptionPane.ERROR_MESSAGE);
+            if (new DBHandler().buscar(coche.getId()) != null) { //El Coche ya existe en la BD
+
+                String mensaje = "La matrícula: " + coche.getId() + " ya existe en la base de datos.";
+                JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+            } else { //Se puede dar de alta
+
+                if (new DBHandler().alta(coche)) {
+
+                    JOptionPane.showMessageDialog(null, "Vehículo dado de alta", "Alta", JOptionPane.INFORMATION_MESSAGE);
+                    limpiarCampos();
+                } else {
+                    JOptionPane.showMessageDialog(null, "El vehículo no pudo darse de alta", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Matrícula no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }
 
     /**
-     * Recupera datos del formulario solo si se ha rellenado el txtField Matricula
+     * Vuelca el valor de los atributos de un objeto Coche a los campos de la
+     * GUI
      *
-     * @return true si se ha llevado a cabo la recuperación de datos del formulario
+     * @param coche Objeto Coche a mostrar
+     */
+    public void mostrarCoche(Coche coche) {
+
+        textCilindrada.setText(coche.getCc());
+        textPotencia.setText(coche.getCv());
+        textF_VtoSeguro.setText(coche.getFechaSeguro());
+        textF_ProxITV.setText(coche.getFechaItv());
+        textMarca.setText(coche.getMarca());
+        textModelo.setText(coche.getModelo());
+        textColor.setText(coche.getColor());
+        textAnioFabricacion.setText(coche.getAnnio());
+        textMatricula.setText(coche.getId());
+        areaCoche.setText(coche.getTxtArea());
+
+        if (coche.getCombustible().equals(cmb.DIESEL)) {
+            radioDieselCoche.setSelected(true);
+        } else if (coche.getCombustible().equals(cmb.GASOLINA)) {
+            radioGasolinaCoche.setSelected(true);
+        }
+    }
+
+    /**
+     * Limpia los campos mostrados en la GUI
+     */
+    public void limpiarCampos() {
+
+        textCilindrada.setText("");
+        textPotencia.setText("");
+        textF_VtoSeguro.setText("");
+        textF_ProxITV.setText("");
+        textMarca.setText("");
+        textModelo.setText("");
+        textColor.setText("");
+        textAnioFabricacion.setText("");
+        textMatricula.setText("");
+        areaCoche.setText("");
+
+        radioDieselCoche.setSelected(true);
+    }
+
+    /**
+     * Recupera datos del formulario solo si se ha rellenado el txtField
+     * Matricula
+     *
+     * @return true si se ha llevado a cabo la recuperación de datos del
+     * formulario
      */
     public boolean validarDatos() {
 
@@ -93,7 +184,7 @@ public class VistaCocheController implements Initializable {
             modelo = textModelo.getText();
             color = textColor.getText();
             annio = textAnioFabricacion.getText();
-            id = textMatricula.getText();
+            id = textMatricula.getText().toUpperCase();
             area = areaCoche.getText();
 
             if (radioDieselCoche.isSelected()) {

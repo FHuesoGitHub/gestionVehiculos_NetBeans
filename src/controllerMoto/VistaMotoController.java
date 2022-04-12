@@ -23,7 +23,7 @@ import javafx.scene.control.Button;
 public class VistaMotoController implements Initializable {
 
     @FXML
-    private Button botonAntMoto, botonBuscarMoto, botonSigMoto, botonBajaMoto, botonModMoto, botonAltaMoto;
+    private Button botonAntMoto, botonBuscarMoto, botonSigMoto, botonBajaMoto, botonModMoto, botonAltaMoto, botonLimpiarMoto;
     
     public void action(ActionEvent e){
         

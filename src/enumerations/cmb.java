@@ -1,4 +1,4 @@
-package model;
+package enumerations;
 
 /**
  * Tipo de combustible

@@ -61,19 +61,55 @@ public class DBHandler {
     }
 
     /**
-     * BORRAR   RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+     * Busca un vehículo en la BD
+     *
+     * @param id String con ID del vehículo a buscar
+     * @return Vehiculo encontrado o null si no ha habido coincidencias
+     */
+    public Vehiculo buscar(String id) {
+
+        //Este método parte de la base de que en la base de datos no puede haber
+        // varios objetos con el mismo código.
+        //
+        Query consulta = db.query(); //Se crea consulta
+        consulta.constrain(Vehiculo.class); //Los objetos a consultar serán de tipo Vehiculo.
+        consulta.descend("id").constrain(id.toUpperCase()); //Se añade restricción por ID
+
+        ObjectSet<Vehiculo> resultado; //ObjectSet donde se guardarán los resultados de la consulta.
+
+        resultado = consulta.execute(); //Se ejecuta la consulta.
+
+        if (resultado.isEmpty()) { //La consulta está vacía.
+
+            cerrarConexion();
+            return null;
+        } else { //La consulta contiene registros
+
+            Vehiculo vehiculo = resultado.next(); //Se guarda el objeto coincidente
+
+            cerrarConexion();
+            return vehiculo;
+        }
+    }
+
+    /**
+     * BORRAR RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
      * RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
      */
-    private String VehiculotoString() {
+    public String VehiculotoString() {
 
         ObjectSet<Vehiculo> resultado;
-        resultado = db.queryByExample(new Vehiculo(null, null, null, null, "a", null));
+        resultado = db.queryByExample(new Vehiculo(null, null, null, null, "1819KBJ", null));
 
         Coche c = (Coche) resultado.next();
 
-        String coche = "Anio: " + c.getAnnio() + " Cilindrada: " + c.getCc() + " Color: " + c.getColor()
-                + " Cavallos: " + c.getCv() + " Fecha ITV: " + c.getFechaItv() + " Fecha seguro: " + c.getFechaSeguro()
-                + " Matricula: " + c.getId() + " Modelo: " + c.getModelo() + " Area" + " Combustible: " + c.getCombustible();
+        String coche = "Año: " + c.getAnnio() + " Cilindrada: " + c.getCc() + " Color: " + c.getColor()
+                + " Caballos: " + c.getCv() + " Fecha ITV: " + c.getFechaItv() + " Fecha seguro: " + c.getFechaSeguro()
+                + " Matrícula: " + c.getId() + " Modelo: " + c.getModelo() + " Área: " + c.getTxtArea() + " Combustible: " + c.getCombustible();
+
+        System.out.println(coche);
+
+        cerrarConexion();
 
         return coche;
     }

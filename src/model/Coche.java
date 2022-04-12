@@ -5,6 +5,8 @@
  */
 package model;
 
+import enumerations.cmb;
+
 /**
  * Modela los objetos Coche. Especificación de Vehículo.
  *

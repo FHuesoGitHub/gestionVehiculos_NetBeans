@@ -154,7 +154,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                            </children>
                         </HBox>
                      </children></VBox>
-                  <HBox alignment="CENTER" prefHeight="86.0" prefWidth="246.0" spacing="30.0">
+                  <HBox alignment="CENTER" prefHeight="86.0" prefWidth="246.0" spacing="10.0">
                      <children>
                         <Button fx:id="botonAntMoto" mnemonicParsing="false" onAction="#action" prefHeight="25.0" prefWidth="50.0" text="&lt;&lt;">
                            <font>
@@ -162,6 +162,11 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                            </font>
                         </Button>
                         <Button fx:id="botonBuscarMoto" mnemonicParsing="false" onAction="#action" text="Buscar">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="botonLimpiarMoto" mnemonicParsing="false" onAction="#action" text="X">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
