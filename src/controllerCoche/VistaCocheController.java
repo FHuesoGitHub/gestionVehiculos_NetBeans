@@ -51,7 +51,7 @@ public class VistaCocheController implements Initializable {
 
         if (e.getSource().equals(botonBajaCoche)) {
 
-            areaCoche.setText(new DBHandler().VehiculotoString());
+            bajaCoche();
         }
 
         if (e.getSource().equals(botonLimpiarCoche)) {
@@ -61,30 +61,96 @@ public class VistaCocheController implements Initializable {
         if (e.getSource().equals(botonBuscarCoche)) {
             buscarCoche();
         }
+
+        if (e.getSource().equals(botonModCoche)) {
+            modificarCoche();
+        }
+    }
+
+    /**
+     * Conecta con DBHandler para modificar un vehículo en la BD
+     */
+    private void modificarCoche() {
+
+        if (validarDatos()) {
+
+            Coche coche = new Coche(cc, cv, fechaSeguro, fechaItv, combustible, marca, modelo, color, annio, id, area);
+
+            Vehiculo vehiculo = new DBHandler().buscar(new Vehiculo(null, null, null, null, coche.getId(), null));
+
+            if (vehiculo == null) { //El vehiculo a modificar no existe
+
+                String mensaje = "La matrícula: " + coche.getId() + " no existe.";
+                JOptionPane.showMessageDialog(null, mensaje, "Atención", JOptionPane.ERROR_MESSAGE);
+            } else { //El vehículo a modificar existe
+
+                String mensaje = "¿Deseas modificar la matrícula: " + coche.getId() + "?";
+                int opcion = JOptionPane.showConfirmDialog(null, mensaje, "Atención", JOptionPane.YES_NO_OPTION);
+
+                if (opcion == 0) {
+
+                    if (new DBHandler().modificar(coche)) { //Se modifica el Vehículo en la BD
+                        JOptionPane.showMessageDialog(null, "Vehículo modificado", "Modificar", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+
+            limpiarCampos();
+        } else {
+            JOptionPane.showMessageDialog(null, "Matrícula no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Conecta con DBHandler para dar de baja un vehículo en la BD
+     */
+    private void bajaCoche() {
+
+        if (textMatricula.getText().trim().isEmpty()) { // El campo no puede estar vacío
+
+            JOptionPane.showMessageDialog(null, "Necesito una matrícula para borrar.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            String mensaje = "¿Deseas borrar la matrícula: " + textMatricula.getText() + "?";
+            int opcion = JOptionPane.showConfirmDialog(null, mensaje, "Atención", JOptionPane.YES_NO_OPTION);
+
+            if (opcion == 0) {
+
+                Vehiculo vehiculo = new Vehiculo(null, null, null, null, textMatricula.getText().toUpperCase(), null); //Vehículo a borrar
+                if (new DBHandler().borrar(vehiculo)) {
+
+                    mensaje = "Matrícula: " + vehiculo.getId() + " borrada.";
+                    JOptionPane.showMessageDialog(null, mensaje, "Borrar", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+
+                    mensaje = "La matrícula: " + vehiculo.getId() + " no existe.";
+                    JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            limpiarCampos();
+        }
     }
 
     /**
      * Conecta con DBHandler para buscar un vehículo
      */
-    public void buscarCoche() {
+    private void buscarCoche() {
 
-        //Recupero el ID del producto a buscar
-        String matricula = textMatricula.getText();
-
-        if (matricula.trim().isEmpty()) { //El campo no puede estar vacío
+        if (textMatricula.getText().trim().isEmpty()) { //El campo no puede estar vacío
 
             JOptionPane.showMessageDialog(null, "Necesito una matrícula para buscar.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
 
-            Vehiculo coche = new DBHandler().buscar(matricula);
+            Vehiculo vehiculo = new Vehiculo(null, null, null, null, textMatricula.getText(), null); //Vehículo a buscar
+            Vehiculo vCoincidente = new DBHandler().buscar(vehiculo);
 
-            if (coche == null || !(coche instanceof Coche)) { //Búsqueda sin éxito
+            if (vCoincidente == null) { //Búsqueda sin éxito
 
-                String mensaje = "No se ha encontrado la matrícula: " + matricula;
+                String mensaje = "No se ha encontrado la matrícula: " + vehiculo.getId();
                 JOptionPane.showMessageDialog(null, mensaje, "Buscar", JOptionPane.INFORMATION_MESSAGE);
                 limpiarCampos();
             } else { //La búsqueda ha tenido éxito
-                mostrarCoche((Coche)coche);
+                mostrarCoche((Coche) vCoincidente);
             }
         }
     }
@@ -92,13 +158,13 @@ public class VistaCocheController implements Initializable {
     /**
      * Conecta con DBHandler para dar un vehículo de alta
      */
-    public void altaCoche() {
+    private void altaCoche() {
 
         if (validarDatos()) {
 
             Coche coche = new Coche(cc, cv, fechaSeguro, fechaItv, combustible, marca, modelo, color, annio, id, area);
 
-            if (new DBHandler().buscar(coche.getId()) != null) { //El Coche ya existe en la BD
+            if (new DBHandler().buscar(coche) != null) { //El vehículo ya existe en la BD
 
                 String mensaje = "La matrícula: " + coche.getId() + " ya existe en la base de datos.";
                 JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
@@ -119,12 +185,11 @@ public class VistaCocheController implements Initializable {
     }
 
     /**
-     * Vuelca el valor de los atributos de un objeto Coche a los campos de la
-     * GUI
+     * Vuelca el valor de los atributos de un objeto Coche a los campos de la GUI
      *
      * @param coche Objeto Coche a mostrar
      */
-    public void mostrarCoche(Coche coche) {
+    private void mostrarCoche(Coche coche) {
 
         textCilindrada.setText(coche.getCc());
         textPotencia.setText(coche.getCv());
@@ -147,7 +212,7 @@ public class VistaCocheController implements Initializable {
     /**
      * Limpia los campos mostrados en la GUI
      */
-    public void limpiarCampos() {
+    private void limpiarCampos() {
 
         textCilindrada.setText("");
         textPotencia.setText("");
@@ -164,13 +229,11 @@ public class VistaCocheController implements Initializable {
     }
 
     /**
-     * Recupera datos del formulario solo si se ha rellenado el txtField
-     * Matricula
+     * Recupera datos del formulario solo si se ha rellenado el txtField Matricula
      *
-     * @return true si se ha llevado a cabo la recuperación de datos del
-     * formulario
+     * @return true si se ha llevado a cabo la recuperación de datos del formulario
      */
-    public boolean validarDatos() {
+    private boolean validarDatos() {
 
         if (textMatricula.getText().trim().isEmpty()) {
             return false;

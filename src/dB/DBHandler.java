@@ -31,6 +31,88 @@ public class DBHandler {
     }
 
     /**
+     * Modifica un objeto Vehiculo en la BD
+     *
+     * @param vehiculo Objeto Vehiculo a modificar en la BD
+     * @return true en el caso de que se haya modificado el objeto Vehiculo con éxito
+     */
+    public boolean modificar(Vehiculo vehiculo) {
+
+        //Este método parte de la base de que en la base de datos no puede haber
+        //varios objetos Vehiculo con el mismo ID.
+        //
+        ObjectSet<Vehiculo> resultado; //ObjectSet donde se guardarán los resultados de la consulta.
+
+        resultado = db.queryByExample(new Vehiculo(null, null, null, null, vehiculo.getId(), null)); //Consulta simple para buscar vehículo.
+
+        if (resultado.hasNext()) { //Hay coincidencia
+
+            Coche cNuevo = (Coche) resultado.next();
+            Coche cAntiguo = (Coche) vehiculo;
+
+            //Actualización de atributos
+            cNuevo.setAnnio(cAntiguo.getAnnio());
+            cNuevo.setCc(cAntiguo.getCc());
+            cNuevo.setColor(cAntiguo.getColor());
+            cNuevo.setCombustible(cAntiguo.getCombustible());
+            cNuevo.setCv(cAntiguo.getCv());
+            cNuevo.setFechaItv(cAntiguo.getFechaItv());
+            cNuevo.setFechaSeguro(cAntiguo.getFechaSeguro());
+            cNuevo.setMarca(cAntiguo.getMarca());
+            cNuevo.setModelo(cAntiguo.getModelo());
+            cNuevo.setTxtArea(cAntiguo.getTxtArea());
+
+            //Actualización del vehículo en la BD
+            alta(cNuevo);
+
+            return true;
+        } else {
+
+            cerrarConexion();
+            return false;
+        }
+    }
+
+    /**
+     * Borra un objeto Vehiculo de la BD
+     *
+     * @param vehiculo Objeto Vehiculo a borrar de la BD
+     * @return true en el caso de que se haya podido borrar el objeto
+     */
+    public boolean borrar(Vehiculo vehiculo) {
+
+        //Este método parte de la base de que en la base de datos no puede haber
+        //varios objetos Vehiculo con el mismo ID.
+        //
+        ObjectSet<Vehiculo> resultado; //ObjectSet donde se guardarán los resultados de la consulta.
+
+        resultado = db.queryByExample(vehiculo); //Consulta simple para buscar vehículo.
+
+        if (resultado.hasNext()) { //Hay coincidencia
+
+            try {
+
+                db.delete(resultado.next());
+                cerrarConexion();
+
+                return true;
+            } catch (Db4oException e) {
+
+                String mensaje = "Se arrojó el siguiente error borrando el vehículo de la base de datos: "
+                        + "\n " + e;
+                JOptionPane.showMessageDialog(null, mensaje, "Error en la base de datos", JOptionPane.ERROR_MESSAGE);
+
+                cerrarConexion();
+                return false;
+            }
+        } else { //No hay coincidencia
+
+            cerrarConexion();
+            return false;
+        }
+    }
+
+    /**
      * Inserta un Objeo Vehiculo en la BD
      *
      * @param v Objeto Vehiculo a ingresar
@@ -51,7 +133,7 @@ public class DBHandler {
                 return true;
             } catch (Db4oException e) {
 
-                String mensaje = "Se arrojó el siguiente error agregando el Artículo a la base de datos: "
+                String mensaje = "Se arrojó el siguiente error agregando el vehículo a la base de datos: "
                         + "\n " + e;
                 JOptionPane.showMessageDialog(null, mensaje, "Error en la base de datos", JOptionPane.ERROR_MESSAGE);
 
@@ -63,17 +145,17 @@ public class DBHandler {
     /**
      * Busca un vehículo en la BD
      *
-     * @param id String con ID del vehículo a buscar
+     * @param vehiculo Objeto Vehiculo a buscar
      * @return Vehiculo encontrado o null si no ha habido coincidencias
      */
-    public Vehiculo buscar(String id) {
+    public Vehiculo buscar(Vehiculo vehiculo) {
 
         //Este método parte de la base de que en la base de datos no puede haber
-        // varios objetos con el mismo código.
+        //varios objetos Vehiculo con el mismo ID.
         //
         Query consulta = db.query(); //Se crea consulta
         consulta.constrain(Vehiculo.class); //Los objetos a consultar serán de tipo Vehiculo.
-        consulta.descend("id").constrain(id.toUpperCase()); //Se añade restricción por ID
+        consulta.descend("id").constrain(vehiculo.getId().toUpperCase()); //Se añade restricción por ID
 
         ObjectSet<Vehiculo> resultado; //ObjectSet donde se guardarán los resultados de la consulta.
 
@@ -85,33 +167,11 @@ public class DBHandler {
             return null;
         } else { //La consulta contiene registros
 
-            Vehiculo vehiculo = resultado.next(); //Se guarda el objeto coincidente
+            Vehiculo vCoincidente = resultado.next(); //Se guarda el objeto coincidente
 
             cerrarConexion();
-            return vehiculo;
+            return vCoincidente;
         }
-    }
-
-    /**
-     * BORRAR RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-     * RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-     */
-    public String VehiculotoString() {
-
-        ObjectSet<Vehiculo> resultado;
-        resultado = db.queryByExample(new Vehiculo(null, null, null, null, "1819KBJ", null));
-
-        Coche c = (Coche) resultado.next();
-
-        String coche = "Año: " + c.getAnnio() + " Cilindrada: " + c.getCc() + " Color: " + c.getColor()
-                + " Caballos: " + c.getCv() + " Fecha ITV: " + c.getFechaItv() + " Fecha seguro: " + c.getFechaSeguro()
-                + " Matrícula: " + c.getId() + " Modelo: " + c.getModelo() + " Área: " + c.getTxtArea() + " Combustible: " + c.getCombustible();
-
-        System.out.println(coche);
-
-        cerrarConexion();
-
-        return coche;
     }
 
     private void crearConexion() {
@@ -148,206 +208,3 @@ public class DBHandler {
         }
     }
 }
-
-/*
-public boolean insertar(Articulo a) {
-
-        if (db == null) { //No se pudo abrir la BD
-
-            return false;
-        } else { //La BD se abrió correctamente
-
-            try {
-
-                db.store(a);
-                cerrarConexion();
-
-                return true;
-            } catch (Db4oException e) {
-
-                String mensaje = "Se arrojó el siguiente error agregando el Artículo a la base de datos: "
-                        + "\n " + e;
-                JOptionPane.showMessageDialog(null, mensaje, "Error en la base de datos", JOptionPane.ERROR_MESSAGE);
-
-                return false;
-            }
-
-        }
-    }
-
-    
-    public boolean modificar(Articulo articulo) {
-
-        //Este método parte de la base de que cada artículo tiene un código único.        
-        //
-        String codigo = articulo.getCodigo(); //Código del artículo a buscar
-
-        ObjectSet<Articulo> resultado; //ObjectSet donde se guardarán los resultados de la consulta.
-
-        resultado = db.queryByExample(new Articulo(codigo, null, null, 0)); //Consulta simple para buscar artículo.
-
-        if (resultado.hasNext()) { //Hay coincidencia
-
-            Articulo nuevoArticulo = resultado.next();
-
-            //Actualización de atributos
-            nuevoArticulo.setNombre(articulo.getNombre());
-            nuevoArticulo.setDescripcion(articulo.getDescripcion());
-            nuevoArticulo.setCantidad(articulo.getCantidad());
-            //Actualización del artículo en la BD
-            insertar(nuevoArticulo);
-
-            return true;
-        } else {
-
-            cerrarConexion();
-            return false;
-        }
-    }
-
-    
-    public String mostrar() {
-
-        String listado = "";
-
-        if (db == null) { //No se pudo abrir la BD
-
-            return null;
-        } else { //La BD se abrió correctamente
-
-            Query consulta = db.query(); //Se crea consulta
-            consulta.constrain(Articulo
-
-.class
-); //Los objetos a consultar serán de tipo Articulo.
-
-            ObjectSet<Articulo> resultado; //ObjectSet donde se guardarán los resultados de la consulta.
-
-            resultado = consulta.execute(); //Se ejecuta la consulta.
-
-            if (resultado.isEmpty()) { //La BD está vacía.
-
-                cerrarConexion();
-                return null;
-            } else { //La BD contiene registros
-
-                //Se recorre el ObjectSet y se extraen los datos de cada objeto hacie el String
-                while (resultado.hasNext()) {
-
-                    Articulo a = resultado.next();
-
-                    listado += "Código: " + a.getCodigo() + "\n"
-                            + "Nombre: " + a.getNombre() + "\n"
-                            + "Cantidad: " + String.valueOf(a.getCantidad()) + "\n"
-                            + "Descripción: " + a.getDescripcion() + "\n\n";
-                }
-
-                cerrarConexion();
-                return listado;
-            }
-
-        }
-    }
-
-    
-    public Articulo buscar(String codigo) {
-
-        //Este método parte de la base de que en la base de datos no puede haber
-        // varios objetos con el mismo código.
-        //
-        Query consulta = db.query(); //Se crea consulta
-        consulta.constrain(Articulo
-
-.class
-); //Los objetos a consultar serán de tipo Articulo.
-        consulta.descend("codigo").constrain(codigo); //Se añade restricción por código
-
-        ObjectSet<Articulo> resultado; //ObjectSet donde se guardarán los resultados de la consulta.
-
-        resultado = consulta.execute(); //Se ejecuta la consulta.
-
-        if (resultado.isEmpty()) { //La consulta está vacía.
-
-            cerrarConexion();
-            return null;
-        } else { //La consulta contiene registros
-
-            Articulo articulo = resultado.next(); //Se guarda el objeto coincidente
-
-            cerrarConexion();
-            return articulo;
-        }
-    }
-
-   
-    public boolean borrar(String codigo) {
-
-        //Este método parte de la base de que cada artículo tiene un código único.        
-        //
-        ObjectSet<Articulo> resultado; //ObjectSet donde se guardarán los resultados de la consulta.
-
-        resultado = db.queryByExample(new Articulo(codigo, null, null, 0)); //Consulta simple para buscar artículo.
-
-        if (resultado.hasNext()) { //Hay coincidencia
-
-            try {
-
-                db.delete(resultado.next());
-                cerrarConexion();
-
-                return true;
-            } catch (Db4oException e) {
-
-                String mensaje = "Se arrojó el siguiente error borrando el Artículo de la base de datos: "
-                        + "\n " + e;
-                JOptionPane.showMessageDialog(null, mensaje, "Error en la base de datos", JOptionPane.ERROR_MESSAGE);
-
-                cerrarConexion();
-                return false;
-            }
-        } else { //No hay coincidencia
-
-            cerrarConexion();
-            return false;
-        }
-    }
-
-    
-    private void crearConexion() {
-
-        //Ruta relativa al fichero de la BD
-        final String uriBD = "src" + File.separator + "datos" + File.separator + "tarea8.yap";
-
-        try {
-
-            
-            //El método openFile abre un ObejctContainer en la BD para uso local
-             
-            db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), uriBD);
-        } catch (Db4oException e) {
-
-            String mensaje = "Se arrojó el siguiente error abriendo la base de datos: "
-                    + "\n " + e;
-            JOptionPane.showMessageDialog(null, mensaje, "Error en la base de datos", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-   
-    private void cerrarConexion() {
-
-        try {
-
-            if (db != null) {
-
-                db.commit(); //Confirma la transacción actual.
-                db.close(); //Cierra conexión con BD.
-            }
-        } catch (Db4oException e) {
-
-            String mensaje = "Se arrojó el siguiente error cerrando la base de datos: "
-                    + "\n " + e;
-            JOptionPane.showMessageDialog(null, mensaje, "Error en la base de datos", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-}
- */
