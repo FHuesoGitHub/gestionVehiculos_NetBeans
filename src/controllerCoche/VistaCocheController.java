@@ -127,10 +127,56 @@ public class VistaCocheController implements Initializable {
     }
 
     /**
-     * Conecta con DBHandler para obtener un vehículo anterior de la BD
+     * Conecta con DBHandler para obtener un vehículo siguiente de la BD
      */
     private void siguienteCoche() {
+        Object objectList[] = new DBHandler().toArray();
 
+        if (objectList.length > 0) { //Hay objetos en la BD
+            //
+            //Se van a tener en cuenta dos casos:
+            //
+            //1. - Se ha introducido una matrícula en la GUI.
+            ////Se debe mostrar la matrícula siguiente, siempre y cuando haya matrículas (de coche) en la BD
+            //
+            if (validarDatos()) { //Hay matrícula en la GUI
+
+                Coche coche = new Coche(cc, cv, fechaSeguro, fechaItv, combustible, marca, modelo, color, annio, id, area);
+
+                for (int i = 0; i < objectList.length; i++) { //Se recorren los objetos recuperados en la BD
+
+                    if (objectList[i] instanceof Coche) { //El objeto iterado es de tipo Coche
+                        if (((Coche) objectList[i]).getId().equals(coche.getId())) { //El objeto iterado coincide (ID) con el recuperado de la GUI
+                            if (i < (objectList.length - 1)) { //Hay objetos Coche posteriores
+                                mostrarCoche((Coche) objectList[i + 1]);
+                            } else if (i == 0) { //Es el único cohe en la BD
+                                mostrarCoche((Coche) objectList[i]);
+                            }
+                        }
+                    }
+                }
+            } else {
+                //
+                //2. - No se ha introducido matrícula en la GUI.
+                ////Si hay matrículas en la BD, se mostrará la última (de coche)
+                //
+                if (objectList.length == 1) {
+                    mostrarCoche((Coche) objectList[0]);
+                } else {
+                    for (int i = (objectList.length - 1); i > 0; i--) {
+
+                        if (objectList[i] instanceof Coche) {
+                            mostrarCoche((Coche) objectList[i]);
+                            break;
+                        }
+                    }
+                }
+            }
+        } else { //La BD no tiene objetos
+
+            JOptionPane.showMessageDialog(null, "No hay vehículos para mostrar", "Error", JOptionPane.ERROR_MESSAGE);
+            limpiarCampos();
+        }
     }
 
     /**
