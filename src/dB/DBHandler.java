@@ -31,10 +31,40 @@ public class DBHandler {
     }
 
     /**
+     * Inserta todos los objetos de la BD en un array
+     *
+     * @return array tipo Object con todos los objetos de la BD
+     */
+    public Object[] toArray() {
+
+        Query consulta = db.query(); //Se crea consulta
+        consulta.constrain(Vehiculo.class); //Los objetos a consultar serán de tipo Vehiculo.
+        consulta.descend("id").orderAscending(); //Objetos ordenados por ID (ascendente).
+
+        ObjectSet<Vehiculo> resultado; //ObjectSet donde se guardarán los resultados de la consulta.
+
+        try {
+
+            //La ejecución de la consulta dará error si estando vacía se ha intentado ordenar con orderAscending
+            resultado = consulta.execute();
+
+            Object objetosBD[] = resultado.toArray(); //Se pasa el resultado de la consulta a un array de tipo Object
+
+            cerrarConexion();
+            return objetosBD;
+        } catch (Exception e) {
+
+            cerrarConexion();
+            return new Object[0];
+        }
+    }
+
+    /**
      * Modifica un objeto Vehiculo en la BD
      *
      * @param vehiculo Objeto Vehiculo a modificar en la BD
-     * @return true en el caso de que se haya modificado el objeto Vehiculo con éxito
+     * @return true en el caso de que se haya modificado el objeto Vehiculo con
+     * éxito
      */
     public boolean modificar(Vehiculo vehiculo) {
 
@@ -176,13 +206,18 @@ public class DBHandler {
 
     private void crearConexion() {
 
-        //Ruta relativa al fichero de la BD
-        final String uriBD = "src" + File.separator + "dB" + File.separator + "vehiculo.yap";
+        //Ruta relativa al fichero de la BD        
+        final File path = new File("DB");
+        final File db4o = new File(File.separator + "vehiculo.yap");
 
         try {
 
+            if (!path.exists()) { //Si el directorio no existe, se crea
+                path.mkdir();
+            }
+
             //El método openFile abre un ObejectContainer en la BD para uso local
-            db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), uriBD);
+            db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), path.getPath() + db4o.getPath());
         } catch (Db4oException e) {
 
             String mensaje = "Se arrojó el siguiente error abriendo la base de datos: "

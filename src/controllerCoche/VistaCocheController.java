@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 import model.Coche;
 import enumerations.cmb;
+import model.Moto;
 import model.Vehiculo;
 
 /**
@@ -65,6 +66,71 @@ public class VistaCocheController implements Initializable {
         if (e.getSource().equals(botonModCoche)) {
             modificarCoche();
         }
+
+        if (e.getSource().equals(botonAntCoche)) {
+            anteriorCoche();
+        }
+
+        if (e.getSource().equals(botonSigCoche)) {
+            siguienteCoche();
+        }
+    }
+
+    /**
+     * Conecta con DBHandler para obtener un vehículo anterior de la BD
+     */
+    private void anteriorCoche() {
+
+        Object objectList[] = new DBHandler().toArray();
+
+        if (objectList.length > 0) { //Hay objetos en la BD
+            //
+            //Se van a tener en cuenta dos casos:
+            //
+            //1. - Se ha introducido una matrícula en la GUI.
+            ////Se debe mostrar la matrícula anterior, siempre y cuando haya matrículas (de coche) en la BD
+            //
+            if (validarDatos()) { //Hay matrícula en la GUI
+
+                Coche coche = new Coche(cc, cv, fechaSeguro, fechaItv, combustible, marca, modelo, color, annio, id, area);
+
+                for (int i = 0; i < objectList.length; i++) { //Se recorren los objetos recuperados en la BD
+
+                    if (objectList[i] instanceof Coche) { //El objeto iterado es de tipo Coche
+                        if (((Coche) objectList[i]).getId().equals(coche.getId())) { //El objeto iterado coincide (ID) con el recuperado de la GUI
+                            if (i > 0) { //Hay objetos Coche anteriores
+                                mostrarCoche((Coche) objectList[i - 1]);
+                            } else if (i == 0) { //Es el único cohe en la BD
+                                mostrarCoche((Coche) objectList[i]);
+                            }
+                        }
+                    }
+                }
+            } else {
+                //
+                //2. - No se ha introducido matrícula en la GUI.
+                ////Si hay matrículas en la BD, se mostrará la primera (de coche)
+                //
+                for (Object o : objectList) {
+
+                    if (o instanceof Coche) {
+                        mostrarCoche((Coche) o);
+                        break;
+                    }
+                }
+            }
+        } else { //La BD no tiene objetos
+
+            JOptionPane.showMessageDialog(null, "No hay vehículos para mostrar", "Error", JOptionPane.ERROR_MESSAGE);
+            limpiarCampos();
+        }
+    }
+
+    /**
+     * Conecta con DBHandler para obtener un vehículo anterior de la BD
+     */
+    private void siguienteCoche() {
+
     }
 
     /**
@@ -185,7 +251,8 @@ public class VistaCocheController implements Initializable {
     }
 
     /**
-     * Vuelca el valor de los atributos de un objeto Coche a los campos de la GUI
+     * Vuelca el valor de los atributos de un objeto Coche a los campos de la
+     * GUI
      *
      * @param coche Objeto Coche a mostrar
      */
@@ -229,9 +296,11 @@ public class VistaCocheController implements Initializable {
     }
 
     /**
-     * Recupera datos del formulario solo si se ha rellenado el txtField Matricula
+     * Recupera datos del formulario solo si se ha rellenado el txtField
+     * Matricula
      *
-     * @return true si se ha llevado a cabo la recuperación de datos del formulario
+     * @return true si se ha llevado a cabo la recuperación de datos del
+     * formulario
      */
     private boolean validarDatos() {
 
@@ -265,7 +334,29 @@ public class VistaCocheController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
+        //
+        //Introduce matrículas de prueba en la BD
+        /*for (int i = 0; i < 100; i++) {
+
+            Coche c = new Coche(String.valueOf(i), String.valueOf(i), String.valueOf(i),
+                    String.valueOf(i), cmb.DIESEL, String.valueOf(i), String.valueOf(i),
+                    String.valueOf(i), String.valueOf(i), String.valueOf(i), String.valueOf(i));
+
+            new DBHandler().alta(c);
+        }*/
+        //
+        //
+        //Al cargar la GUI, se mostrará el primer vehículo en la base de datos (Coche).
+        Object object[] = new DBHandler().toArray();
+
+        for (Object o : object) {
+
+            if (o instanceof Coche) {
+                mostrarCoche((Coche) o);
+                break;
+            }
+        }
     }
 
 }
