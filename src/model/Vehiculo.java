@@ -16,7 +16,7 @@ public class Vehiculo {
     protected String marca, modelo, color, annio, id, txtArea;
 
     public Vehiculo() {
-    }   
+    }
 
     public Vehiculo(String marca, String modelo, String color, String annio, String id, String txtArea) {
         this.marca = marca;
@@ -25,7 +25,7 @@ public class Vehiculo {
         this.annio = annio;
         this.id = id;
         this.txtArea = txtArea;
-    }  
+    }
 
     public String getMarca() {
         return marca;
@@ -65,7 +65,7 @@ public class Vehiculo {
 
     public void setId(String id) {
         this.id = id;
-    }    
+    }
 
     public String getTxtArea() {
         return txtArea;
@@ -73,5 +73,5 @@ public class Vehiculo {
 
     public void setTxtArea(String txtArea) {
         this.txtArea = txtArea;
-    }    
+    }
 }

@@ -124,7 +124,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                         </TextField>
                         <HBox alignment="CENTER" prefHeight="46.0" prefWidth="246.0">
                            <children>
-                              <RadioButton fx:id="radioDieselCoche" mnemonicParsing="false" style="-fx-background-color: white;" text="A">
+                              <RadioButton fx:id="radioAMoto" mnemonicParsing="false" style="-fx-background-color: white;" text="A">
                                  <HBox.margin>
                                     <Insets right="15.0" top="15.0" />
                                  </HBox.margin>
@@ -135,7 +135,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                                     <ToggleGroup fx:id="groupCarnet" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton fx:id="radioGasolinaCoche" mnemonicParsing="false" style="-fx-background-color: white;" text="A1" toggleGroup="$groupCarnet">
+                              <RadioButton fx:id="radioA1Moto" mnemonicParsing="false" style="-fx-background-color: white;" text="A1" toggleGroup="$groupCarnet">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -143,7 +143,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                                     <Insets right="15.0" top="15.0" />
                                  </HBox.margin>
                               </RadioButton>
-                              <RadioButton fx:id="radioDieselCoche1" mnemonicParsing="false" selected="true" style="-fx-background-color: white;" text="A2" toggleGroup="$groupCarnet">
+                              <RadioButton fx:id="radioA2Moto" mnemonicParsing="false" selected="true" style="-fx-background-color: white;" text="A2" toggleGroup="$groupCarnet">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>

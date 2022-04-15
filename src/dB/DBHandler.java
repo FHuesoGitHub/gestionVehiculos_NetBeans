@@ -12,7 +12,9 @@ import com.db4o.ext.Db4oException;
 import com.db4o.query.Query;
 import java.io.File;
 import javax.swing.JOptionPane;
+import model.Bici;
 import model.Coche;
+import model.Moto;
 import model.Vehiculo;
 
 /**
@@ -63,8 +65,7 @@ public class DBHandler {
      * Modifica un objeto Vehiculo en la BD
      *
      * @param vehiculo Objeto Vehiculo a modificar en la BD
-     * @return true en el caso de que se haya modificado el objeto Vehiculo con
-     * éxito
+     * @return true en el caso de que se haya modificado el objeto Vehiculo con éxito
      */
     public boolean modificar(Vehiculo vehiculo) {
 
@@ -77,30 +78,75 @@ public class DBHandler {
 
         if (resultado.hasNext()) { //Hay coincidencia
 
-            Coche cNuevo = (Coche) resultado.next();
-            Coche cAntiguo = (Coche) vehiculo;
+            //
+            //Dependiendo del tipo de objeto recibido, se actualizarán una setrie de atributos
+            //
+            if (vehiculo instanceof Coche) {
 
-            //Actualización de atributos
-            cNuevo.setAnnio(cAntiguo.getAnnio());
-            cNuevo.setCc(cAntiguo.getCc());
-            cNuevo.setColor(cAntiguo.getColor());
-            cNuevo.setCombustible(cAntiguo.getCombustible());
-            cNuevo.setCv(cAntiguo.getCv());
-            cNuevo.setFechaItv(cAntiguo.getFechaItv());
-            cNuevo.setFechaSeguro(cAntiguo.getFechaSeguro());
-            cNuevo.setMarca(cAntiguo.getMarca());
-            cNuevo.setModelo(cAntiguo.getModelo());
-            cNuevo.setTxtArea(cAntiguo.getTxtArea());
+                Coche cNuevo = (Coche) resultado.next();
+                Coche cAntiguo = (Coche) vehiculo;
 
-            //Actualización del vehículo en la BD
-            alta(cNuevo);
+                //Actualización de atributos
+                cNuevo.setAnnio(cAntiguo.getAnnio());
+                cNuevo.setCc(cAntiguo.getCc());
+                cNuevo.setColor(cAntiguo.getColor());
+                cNuevo.setCombustible(cAntiguo.getCombustible());
+                cNuevo.setCv(cAntiguo.getCv());
+                cNuevo.setFechaItv(cAntiguo.getFechaItv());
+                cNuevo.setFechaSeguro(cAntiguo.getFechaSeguro());
+                cNuevo.setMarca(cAntiguo.getMarca());
+                cNuevo.setModelo(cAntiguo.getModelo());
+                cNuevo.setTxtArea(cAntiguo.getTxtArea());
 
-            return true;
-        } else {
+                //Actualización del vehículo en la BD
+                alta(cNuevo);
+                return true;
+            }
 
-            cerrarConexion();
-            return false;
+            if (vehiculo instanceof Moto) {
+
+                Moto mNuevo = (Moto) resultado.next();
+                Moto mAntiguo = (Moto) vehiculo;
+
+                //Actualización de atributos
+                mNuevo.setAnnio(mAntiguo.getAnnio());
+                mNuevo.setCc(mAntiguo.getCc());
+                mNuevo.setColor(mAntiguo.getColor());
+                mNuevo.setCarnet(mAntiguo.getCarnet());
+                mNuevo.setCv(mAntiguo.getCv());
+                mNuevo.setFechaItv(mAntiguo.getFechaItv());
+                mNuevo.setFechaSeguro(mAntiguo.getFechaSeguro());
+                mNuevo.setMarca(mAntiguo.getMarca());
+                mNuevo.setModelo(mAntiguo.getModelo());
+                mNuevo.setTxtArea(mAntiguo.getTxtArea());
+
+                //Actualización del vehículo en la BD
+                alta(mNuevo);
+                return true;
+            }
+
+            if (vehiculo instanceof Bici) {
+
+                Bici bNuevo = (Bici) resultado.next();
+                Bici bAntiguo = (Bici) vehiculo;
+
+                //Actualización de atributos
+                bNuevo.setAnnio(bAntiguo.getAnnio());
+                bNuevo.setColor(bAntiguo.getColor());
+                bNuevo.setMarca(bAntiguo.getMarca());
+                bNuevo.setModelo(bAntiguo.getModelo());
+                bNuevo.setTamaño(bAntiguo.getTamaño());
+                bNuevo.setTipo(bAntiguo.getTipo());
+                bNuevo.setTxtArea(bAntiguo.getTxtArea());
+                
+                //Actualización del vehículo en la BD
+                alta(bNuevo);
+                return true;
+            }
         }
+
+        cerrarConexion();
+        return false;
     }
 
     /**

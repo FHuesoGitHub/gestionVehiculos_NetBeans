@@ -18,7 +18,6 @@ import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 import model.Coche;
 import enumerations.cmb;
-import model.Moto;
 import model.Vehiculo;
 
 /**
@@ -41,17 +40,15 @@ public class VistaCocheController implements Initializable {
     private TextArea areaCoche;
 
     private String cc = "", cv = "", fechaSeguro = "", fechaItv = "", marca = "", modelo = "", color = "", annio = "", id = "", area = "";
-    cmb combustible;
+    private cmb combustible;
 
     public void action(ActionEvent e) {
 
         if (e.getSource().equals(botonAltaCoche)) {
-
             altaCoche();
         }
 
         if (e.getSource().equals(botonBajaCoche)) {
-
             bajaCoche();
         }
 
@@ -82,7 +79,7 @@ public class VistaCocheController implements Initializable {
     private void anteriorCoche() {
 
         Object objectList[] = new DBHandler().toArray();
-
+        
         if (objectList.length > 0) { //Hay objetos en la BD
             //
             //Se van a tener en cuenta dos casos:
@@ -98,7 +95,7 @@ public class VistaCocheController implements Initializable {
 
                     if (objectList[i] instanceof Coche) { //El objeto iterado es de tipo Coche
                         if (((Coche) objectList[i]).getId().equals(coche.getId())) { //El objeto iterado coincide (ID) con el recuperado de la GUI
-                            if (i > 0) { //Hay objetos Coche anteriores
+                            if (i > 0 && (objectList[i - 1] instanceof Coche)) { //Hay objetos Coche anteriores
                                 mostrarCoche((Coche) objectList[i - 1]);
                             } else if (i == 0) { //Es el único cohe en la BD
                                 mostrarCoche((Coche) objectList[i]);
@@ -130,8 +127,9 @@ public class VistaCocheController implements Initializable {
      * Conecta con DBHandler para obtener un vehículo siguiente de la BD
      */
     private void siguienteCoche() {
-        Object objectList[] = new DBHandler().toArray();
 
+        Object objectList[] = new DBHandler().toArray();
+       
         if (objectList.length > 0) { //Hay objetos en la BD
             //
             //Se van a tener en cuenta dos casos:
@@ -147,7 +145,7 @@ public class VistaCocheController implements Initializable {
 
                     if (objectList[i] instanceof Coche) { //El objeto iterado es de tipo Coche
                         if (((Coche) objectList[i]).getId().equals(coche.getId())) { //El objeto iterado coincide (ID) con el recuperado de la GUI
-                            if (i < (objectList.length - 1)) { //Hay objetos Coche posteriores
+                            if (i < (objectList.length - 1) && (objectList[i + 1] instanceof Coche)) { //Hay objetos Coche posteriores
                                 mostrarCoche((Coche) objectList[i + 1]);
                             } else if (i == 0) { //Es el único cohe en la BD
                                 mostrarCoche((Coche) objectList[i]);
@@ -160,10 +158,10 @@ public class VistaCocheController implements Initializable {
                 //2. - No se ha introducido matrícula en la GUI.
                 ////Si hay matrículas en la BD, se mostrará la última (de coche)
                 //
-                if (objectList.length == 1) {
+                if (objectList.length == 1 && (objectList[0] instanceof Coche)) {
                     mostrarCoche((Coche) objectList[0]);
                 } else {
-                    for (int i = (objectList.length - 1); i > 0; i--) {
+                    for (int i = (objectList.length - 1); i >= 0; i--) {
 
                         if (objectList[i] instanceof Coche) {
                             mostrarCoche((Coche) objectList[i]);
@@ -256,7 +254,7 @@ public class VistaCocheController implements Initializable {
             Vehiculo vehiculo = new Vehiculo(null, null, null, null, textMatricula.getText(), null); //Vehículo a buscar
             Vehiculo vCoincidente = new DBHandler().buscar(vehiculo);
 
-            if (vCoincidente == null) { //Búsqueda sin éxito
+            if (vCoincidente == null || !(vCoincidente instanceof Coche)) { //Búsqueda sin éxito
 
                 String mensaje = "No se ha encontrado la matrícula: " + vehiculo.getId();
                 JOptionPane.showMessageDialog(null, mensaje, "Buscar", JOptionPane.INFORMATION_MESSAGE);
@@ -297,8 +295,7 @@ public class VistaCocheController implements Initializable {
     }
 
     /**
-     * Vuelca el valor de los atributos de un objeto Coche a los campos de la
-     * GUI
+     * Vuelca el valor de los atributos de un objeto Coche a los campos de la GUI
      *
      * @param coche Objeto Coche a mostrar
      */
@@ -342,11 +339,9 @@ public class VistaCocheController implements Initializable {
     }
 
     /**
-     * Recupera datos del formulario solo si se ha rellenado el txtField
-     * Matricula
+     * Recupera datos del formulario solo si se ha rellenado el txtField Matricula
      *
-     * @return true si se ha llevado a cabo la recuperación de datos del
-     * formulario
+     * @return true si se ha llevado a cabo la recuperación de datos del formulario
      */
     private boolean validarDatos() {
 
@@ -380,19 +375,7 @@ public class VistaCocheController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        //
-        //Introduce matrículas de prueba en la BD
-        /*for (int i = 0; i < 100; i++) {
-
-            Coche c = new Coche(String.valueOf(i), String.valueOf(i), String.valueOf(i),
-                    String.valueOf(i), cmb.DIESEL, String.valueOf(i), String.valueOf(i),
-                    String.valueOf(i), String.valueOf(i), String.valueOf(i), String.valueOf(i));
-
-            new DBHandler().alta(c);
-        }*/
-        //
-        //
+      
         //Al cargar la GUI, se mostrará el primer vehículo en la base de datos (Coche).
         Object object[] = new DBHandler().toArray();
 
@@ -404,5 +387,4 @@ public class VistaCocheController implements Initializable {
             }
         }
     }
-
 }

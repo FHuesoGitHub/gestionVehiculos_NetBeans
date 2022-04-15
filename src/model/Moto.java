@@ -13,12 +13,12 @@ import enumerations.crnt;
  * @author Francisco Hueso
  * @version 02/2022
  */
-public class Moto extends Vehiculo{
-    
+public class Moto extends Vehiculo {
+
     private String cc, cv, fechaSeguro, fechaItv;
     private crnt carnet;
-    
-    public Moto(){
+
+    public Moto() {
     }
 
     public Moto(String cc, String cv, String fechaSeguro, String fechaItv, crnt carnet, String marca, String modelo, String color, String annio, String id, String txtArea) {
@@ -68,5 +68,5 @@ public class Moto extends Vehiculo{
 
     public void setCarnet(crnt carnet) {
         this.carnet = carnet;
-    }     
+    }
 }

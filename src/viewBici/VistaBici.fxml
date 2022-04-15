@@ -208,7 +208,7 @@ Proyecto creado para la certificación Cimientos de Java, incluído en el módul
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextArea fx:id="areaCoche" opacity="0.9" prefHeight="499.0" prefWidth="293.0">
+                        <TextArea fx:id="areaBici" opacity="0.9" prefHeight="499.0" prefWidth="293.0">
                            <VBox.margin>
                               <Insets right="10.0" />
                            </VBox.margin>
